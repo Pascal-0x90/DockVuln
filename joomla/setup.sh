@@ -28,7 +28,7 @@ docker run hello-world
 printf "\n\nIf no hello world ran, rerun this setup script.\n"
 
 # Git clone
-git clone https://github.com/Pascal-0x90/joomla-docker-example.git
+#git clone https://github.com/Pascal-0x90/joomla-docker-example.git
 
 cd ops; docker-compose up
 
