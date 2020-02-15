@@ -105,19 +105,31 @@ setup_env () {
 	#cd ops; docker-compose up
 }
 
+menu () {
+	# Print menu
+	echo "Choose a container to standup:"
+	echo "=============================="
+	echo "1. Badpass joomla"
+
+	# Read selection
+	read select
+
+	if [ "$select" == "1" ]; then
+		cd ops; docker-compose up
+	fi
+}
+
 # Check if root
 if [ "$EUID" -ne 0 ]
   then echo "Please run as root"
   exit
 fi
 
+# Check if we need to install binaries
 if ! which docker 1>/dev/null || ! which docker-compose 1>/dev/null || ! which dockerd 1>/dev/null || ! which docker-init 1>/dev/null || ! which docker-proxy 1>/dev/null || ! which python 1>/dev/null || ! which python3 1>/dev/null; then
 	# If any of these are not there, go ahead and just setup everything   
 	setup_env
-fi	   
+fi
 
-
-# Setup environment
-setup_env
-
-
+# Bring up menu
+menu
