@@ -118,7 +118,7 @@ menu () {
 	read select
 
 	if [ "$select" == "1" ]; then
-		cd joomla; docker-compose up
+		cd joomla_bad_pass; docker-compose up
 	fi
 }
 
