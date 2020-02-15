@@ -69,15 +69,15 @@ setup_env () {
 	os3="Debian GNU/Linux"
 	
 	# Different osses are weird
-	if [ $OS == $os1 ]; then
+	if [ "$OS" == "$os1" ]; then
 		# Key For ubuntu
 		curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 		add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-	elif [ $OS == $os2 ]; then
+	elif [ "$OS" == "$os2" ]; then
 		# Key For kali
 		curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 		echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' | tee /etc/apt/sources.list.d/docker.list
-	elif [ $OS == $os3 ]; then
+	elif [ "$OS" == "$os3" ]; then
 		# Key for debian
 		echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' | tee /etc/apt/sources.list.d/docker.list
 		curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
@@ -98,7 +98,7 @@ setup_env () {
 	chmod +x /usr/local/bin/docker-compose
 	
 	# Clear screen and attempt to run docker hello-world
-	clear; echo "Verifying docker install:"
+	echo "Verifying docker install:"
 	docker run hello-world
 	printf "\n\nIf no hello world ran, rerun this setup script.\n"
 	
