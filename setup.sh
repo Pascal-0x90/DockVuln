@@ -135,4 +135,4 @@ if ! which docker 1>/dev/null || ! which docker-compose 1>/dev/null || ! which d
 fi
 
 # Bring up menu
-menu
+# menu
