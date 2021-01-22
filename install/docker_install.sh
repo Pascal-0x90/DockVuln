@@ -143,6 +143,14 @@ setup_env () {
     esac
 }
 
+setup_dockercompose () {
+    # Get compose packeage
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.28.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+    # Executable making it executable
+    sudo chmod +x /usr/local/bin/docker-compose
+}
+
 # Check if we need to install binaries
 if ! which docker 1>/dev/null || ! which docker-compose 1>/dev/null || ! which dockerd 1>/dev/null || ! which docker-init 1>/dev/null || ! which docker-proxy 1>/dev/null || ! which python 1>/dev/null || ! which python3 1>/dev/null; then
 	# If any of these are not there, go ahead and just setup everything   
