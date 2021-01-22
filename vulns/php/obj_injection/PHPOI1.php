@@ -21,10 +21,6 @@ class entry {
 
 $userin = $_GET['fancy'];
 $unser = unserialize($userin);
-?>
 
-<html>
-    <body>
-        We are deving some things out...
-    </body>
-</html>
+include("index.php");
+?>
