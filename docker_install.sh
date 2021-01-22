@@ -19,9 +19,7 @@
 #   docker-ce 
 #   docker-ce-cli 
 #   containerd.io 
-#   python          --> Feel free to remove this
 #   python3 
-#   python-pip      --> Same with this
 #   python3-pip
 #
 # Containers Pulled:
@@ -96,19 +94,20 @@ setup_env () {
 	os1="Ubuntu"
 	os2="Kali GNU/Linux"
 	os3="Debian GNU/Linux"
+    os4="Pop"
 	
 	# Different osses are weird
-	if [ "$OS" == "$os1" ]; then
-		# Key For ubuntu
-		sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+	if [ "$OS" == "$os1" ] || [ "$OS" == "$os4" ]; then
+		# Key For ubuntu and pop
+		sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 		sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 	elif [ "$OS" == "$os2" ]; then
 		# Key For kali
-		sudo curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-		sudo echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' | tee /etc/apt/sources.list.d/docker.list
+		sudo curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+		sudo echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' | sudo tee /etc/apt/sources.list.d/docker.list
 	elif [ "$OS" == "$os3" ]; then
 		# Key for debian
-		sudo echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' | tee /etc/apt/sources.list.d/docker.list
+		sudo echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' | sudo tee /etc/apt/sources.list.d/docker.list
 		sudo curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 	fi
 	
@@ -116,13 +115,18 @@ setup_env () {
 	sudo apt-get update 
 	
 	# Install docker packages
-	sudo apt-get install docker-ce docker-ce-cli containerd.io python python3 python-pip python3-pip -y
+	sudo apt-get install docker-ce docker-ce-cli containerd.io python3 python3-pip -y
 	
 	# Clear screen and attempt to run docker hello-world
 	echo "Verifying docker install:"
 	sudo docker run hello-world
 	printf "\n\nIf no hello world ran, rerun this setup script.\n"
 	
+    echo "+++++++++++++++++++++++++++++++++++++"
+    echo "If this failed, run sudo apt-get install docker-ce docker-ce-cli containerd.io python3 python3-pip -y"
+    echo "+++++++++++++++++++++++++++++++++++++"
+
+
     # Add user to group
     echo "Execute docker command without Sudo? (This adds your user to the docker group.) [yY/nN]"
     read choice
