@@ -22,5 +22,6 @@ class entry {
 $userin = $_GET['fancy'];
 $unser = unserialize($userin);
 
-include("index.php");
+// Show our based content
+include("index.html");
 ?>
