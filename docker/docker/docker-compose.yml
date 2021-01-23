@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  web1:
+      image: nginx:latest
+      ports:
+          - "8081:80"
+      volumes:
+          - ../src:/code
+          - ./site1.conf:/etc/nginx/conf.d/default.conf
+          - ./usr1/flag.txt:/flag.txt
+      links:
+          - php1
+  php1:
+      image: php:7-fpm
+      volumes:
+          - ../src:/code
+          - ./usr1/flag.txt:/flag.txt
+  php2:
+      image: php:7-fpm
+      volumes:
+          - ../src:/code
+          - ./usr2/flag.txt:/flag.txt
+  web2:
+      image: nginx:latest
+      ports:
+          - "8082:80"
+      volumes:
+          - ../src:/code
+          - ./site2.conf:/etc/nginx/conf.d/default.conf
+          - ./usr2/flag.txt:/flag.txt
+      links:
+          - php2  
+
