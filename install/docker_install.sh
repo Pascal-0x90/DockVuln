@@ -94,7 +94,7 @@ setup_env () {
 	os1="Ubuntu"
 	os2="Kali GNU/Linux"
 	os3="Debian GNU/Linux"
-    os4="Pop"
+    	os4="Pop"
 	
 	# Different osses are weird
 	if [ "$OS" == "$os1" ] || [ "$OS" == "$os4" ]; then
